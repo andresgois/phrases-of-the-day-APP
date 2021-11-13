@@ -1,60 +1,37 @@
 import React from 'react';
-import { Text, View, StyleSheet} from 'react-native';
-
+import { Text, View, Image, TouchableOpacity, Alert} from 'react-native';
+import { styles } from './app.module';
 
 const App = () =>  {
+  const { container, botao } = styles;
+
+  const gerarFrase = () => {
+    let frase = Math.floor(Math.random() * 4);
+    let fraseDia = Array();
+    fraseDia[0] = 'Frase 0';
+    fraseDia[1] = 'Frase 1';
+    fraseDia[2] = 'Frase 2';
+    fraseDia[3] = 'Frase 3';
+    fraseDia[4] = 'Frase 4';
+
+    Alert.alert(fraseDia[frase]);
+  }
 
   return (
-    <View >
-      <View style={styles.container}>
-        <Text style={styles.texto}>
-          Frases do Dia
-        </Text>
-      </View>
+    <View style={container}>
+      <Image source={ require('./imgs/logo.png')} />
 
-      <View style={styles.main}>
-        <View style={styles.cx1} />
-        <View style={styles.cx2} />
-      </View>
+      <TouchableOpacity
+        onPress={gerarFrase}
+      >
+        <Text style={botao}> Nova Frase </Text>
+      </TouchableOpacity>
 
     </View>
   );
 
 };
 
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: '#ad5bff',
-    padding: 5,
-    shadowColor: '#ccc',
-    shadowOffset: {width: 20, height: 15},
-    shadowOpacity: 1
-  },
-  texto: {
-    color: '#fff',
-    fontSize: 24,
-    textAlign: 'center',
-    fontStyle: 'italic',
-    fontWeight: 'bold',
-  },
-  cx1: {
-    width: 30,
-    height: 30,
-    margin: 2,
-    backgroundColor: '#400080',
-  },
-  cx2: {
-    width: 30,
-    height: 30,
-    margin: 2,
-    backgroundColor:'#ff0000',
-  },
-  main: {
-    flex: 1,
-    backgroundColor: '#ccc',
-    flexDirection: 'row',
-    justifyContent: 'flex-end'
-  }
-});
+
 
 export default App;
